@@ -97,6 +97,11 @@ public function insertData($table,$condition_arr){
 			$result=$this->connect()->query($sql);
 		}
 	}
+	public function get_safe_str($str){
+		if($str!=''){
+			return mysqli_real_escape_string($this->connect(),$str);
+		}
+	}
 }
 
 ?>
