@@ -49,6 +49,20 @@ class query extends database{
 		}else{
 			return 0;
 		}
-}}
+}
+public function insertData($table,$condition_arr){
+		if($condition_arr!=''){
+			foreach($condition_arr as $key=>$val){
+				$fieldArr[]=$key;
+				$valueArr[]=$val;
+			}
+			$field=implode(",",$fieldArr);
+			$value=implode("','",$valueArr);
+			$value="'".$value."'";			
+			$sql="insert into $table($field) values($value) ";
+			$result=$this->connect()->query($sql);
+		}
+	}
+}
 
 ?>
