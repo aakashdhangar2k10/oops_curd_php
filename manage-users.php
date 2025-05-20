@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 	//header('location:users.php');
 	?>
 	<script>
-	window.location.href='users.php';
+	window.location.href='index.php';
 	</script>
 	<?php
 }
@@ -58,7 +58,7 @@ if(isset($_POST['submit'])){
       
       <div class="container">
          <div class="card">
-            <div class="card-header"><i class="fa fa-fw fa-plus-circle"></i> <strong>Add User</strong> <a href="users.php" class="float-right btn btn-dark btn-sm"><i class="fa fa-fw fa-globe"></i> Browse Users</a></div>
+            <div class="card-header"><i class="fa fa-fw fa-plus-circle"></i> <strong>Add User</strong> <a href="index.php" class="float-right btn btn-dark btn-sm"><i class="fa fa-fw fa-globe"></i> Browse Users</a></div>
             <div class="card-body">
                <div class="col-sm-6">
                   <h5 class="card-title">Fields with <span class="text-danger">*</span> are mandatory!</h5>
