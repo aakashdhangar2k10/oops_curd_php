@@ -1,3 +1,15 @@
+<?php
+include('database.php');
+$obj=new query();
+
+if(isset($_GET['type']) && $_GET['type']=='delete'){
+	$id=$obj->get_safe_str($_GET['id']);
+	$condition_arr=array('id'=>$id);
+	$obj->deleteData('user',$condition_arr);
+}
+
+$result=$obj->getData('user','*','','id','desc');
+?>
 <!doctype html>
 <html lang="en-US">
    <head>
@@ -29,25 +41,32 @@
                      <th>Name</th>
                      <th>Email</th>
                      <th>Mobile</th>
-                     <th class="text-center">Added On</th>
                      <th class="text-center">Action</th>
                   </tr>
                </thead>
                <tbody>
+				<?php
+				if(isset($result['0'])){
+				$id=1;	
+				foreach($result as $list){
+				?>
                   <tr>
-                     <td>1</td>
-                     <td>Vishal</td>
-                     <td>phpvishal@gmail.com</td>
-                     <td>1234567890</td>
-                     <td align="center">30st March 2020</td>
+                     <td><?php echo $id?></td>
+                     <td><?php echo $list['name']?></td>
+                     <td><?php echo $list['email']?></td>
+                     <td><?php echo $list['mobile']?></td>
                      <td align="center">
-                        <a href="" class="text-primary"><i class="fa fa-fw fa-edit"></i> Edit</a> | 
-                        <a href="" class="text-danger"><i class="fa fa-fw fa-trash"></i> Delete</a>
+                        <a href="manage-users.php?id=<?php echo $list['id']?>" class="text-primary"><i class="fa fa-fw fa-edit"></i> Edit</a> | 
+                        <a href="?type=delete&id=<?php echo $list['id']?>" class="text-danger"><i class="fa fa-fw fa-trash"></i> Delete</a>
                      </td>
                   </tr>
-                  <!--<tr>
+				  <?php 
+				  $id++;
+				  } } else {?>
+                  <tr>
                      <td colspan="6" align="center">No Records Found!</td>
-                  </tr>-->
+                  </tr>
+				  <?php } ?>
                </tbody>
             </table>
          </div>
